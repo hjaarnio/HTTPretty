@@ -369,8 +369,8 @@ def test_HTTPrettyRequest_invalid_json_body():
 def test_HTTPrettyRequest_queryparam():
     """ A content-type of x-www-form-urlencoded with a valid queryparam body should return parsed content """
     header = TEST_HEADER % {'content_type': 'application/x-www-form-urlencoded'}
-    valid_queryparam = u"hello=world&this=isavalidquerystring"
-    valid_results = {'hello': ['world'], 'this': ['isavalidquerystring']}
+    valid_queryparam = u"hello=world&this=isavalidquerystring&with=escape%20sequences%2Band+spaces"
+    valid_results = {'hello': ['world'], 'this': ['isavalidquerystring'], 'with': ['escape sequences+and spaces']}
     request = HTTPrettyRequest(header, valid_queryparam)
     expect(request.parsed_body).to.equal(valid_results)
 
