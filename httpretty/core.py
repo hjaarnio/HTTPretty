@@ -364,8 +364,7 @@ class HTTPrettyRequest(BaseHTTPRequestHandler, BaseClass):
         :returns: a dict of lists
 
         """
-        expanded = unquote_utf8(qs)
-        parsed = parse_qs(expanded)
+        parsed = parse_qs(qs, encoding='utf-8')
         result = {}
         for k in parsed:
             result[k] = list(map(decode_utf8, parsed[k]))
